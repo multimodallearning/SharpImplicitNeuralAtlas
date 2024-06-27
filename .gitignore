@@ -1,0 +1,12 @@
+# python caches
+__pycache__/
+*.pyc
+
+# virtualenv
+venv/
+
+# vscode
+.vscode/
+
+# macos
+.DS_Store

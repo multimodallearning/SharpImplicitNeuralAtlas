@@ -1,18 +1,14 @@
-import os
 import argparse
+import os
+
+import matplotlib.pyplot as plt
 import nibabel as nib
 import numpy as np
 import torch
 import torch.nn.functional as F
-
-from models import Siren
-import matplotlib.pyplot as plt
 from tqdm import trange
 
-
-
-
-
+from models import Siren
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Sharp Implicit Neural Atlas 2D')
@@ -65,16 +61,13 @@ if __name__ == "__main__":
     sina.load_state_dict(model_state_dict)
     sina.eval()
     
-    if not os.path.exists(args.output_path):
-                os.makedirs(args.output_path)
+    os.makedirs(args.output_path, exist_ok=True)
     
     if dataset == 'AbdomenCTCT':
         out_H = int(H*args.scale_factor)
         out_W = int(W*args.scale_factor)
         out_D = int(D*args.scale_factor)
         
-        
-
         mesh = F.affine_grid(torch.eye(3,4).unsqueeze(0),(1,1,out_H,out_W,out_D), align_corners=False).squeeze()
         atlas = torch.zeros(H,W,D)
         print(f'Generating {dataset} Atlas with grid size: {out_H}x{out_W}x{out_D}')

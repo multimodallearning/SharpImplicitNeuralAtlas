@@ -1,12 +1,12 @@
 import argparse
 import os
+import time
 from functools import partial
 
 import matplotlib.pyplot as plt
 import nibabel as nib
 import torch
 import torch.nn.functional as F
-import time
 from tqdm import tqdm
 
 from models import Siren, weights_init
@@ -90,7 +90,6 @@ if __name__ == "__main__":
         disp_scheduler_lambda = lambda epoch: 1 if epoch>(args.epochs//4) else epoch/(args.epochs//4)
     disp_scheduler = torch.optim.lr_scheduler.LambdaLR(disp_optimizer, lr_lambda=disp_scheduler_lambda)
 
-      
     mesh = F.affine_grid(torch.eye(3,4).unsqueeze(0).to(device),(1,1,H,W,D), align_corners=False).repeat(args.batch_size,1,1,1,1)
 
     losses = []

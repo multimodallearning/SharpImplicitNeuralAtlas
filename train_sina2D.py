@@ -1,14 +1,15 @@
 import argparse
 import os
+import time
 from functools import partial
 
 import matplotlib.pyplot as plt
 import torch
 import torch.nn.functional as F
-import time
 from tqdm import trange
 
 from models import Siren, weights_init
+from ssim import ssim
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Sharp Implicit Neural Atlas 2D')
@@ -78,7 +79,6 @@ if __name__ == "__main__":
     disp = torch.zeros(N,2,args.grid_sz,args.grid_sz)
     disp = disp.to(device)
     disp.requires_grad = True
- 
 
     optimizer = torch.optim.Adam(model.parameters(),lr=args.lr)
     disp_optimizer = torch.optim.Adam([disp],lr=args.displacement_lr)
@@ -112,7 +112,7 @@ if __name__ == "__main__":
                                     size=(H,W),mode='bilinear').permute(0,2,3,1)
             
             out = model((mesh+disp_spline).view(-1,2)).view(-1)
-            loss = ssim_loss
+            loss =  1 - ssim(out.view(-1,H,W),imgs_train.view(-1,H,W))
             loss.backward()
             losses.append(loss.item())
 
@@ -127,7 +127,7 @@ if __name__ == "__main__":
             with torch.no_grad():
                 atlas = model(mesh[:1].view(-1,2)).view(1,1,H,W)
                 loss_last_iter = torch.tensor(losses[-minibatches.shape[0]:]).mean()
-                print(f'Loss: {loss_last_iter}')
+                print(f'Loss: {loss_last_iter:.4f}')
                 f,ax = plt.subplots(1,1)
                 ax.imshow(atlas.squeeze().cpu().numpy(),'gray')
                 plt.savefig(os.path.join(args.save_path, f'atlas_{epoch}.png'))
