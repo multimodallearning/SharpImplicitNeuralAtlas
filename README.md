@@ -35,7 +35,7 @@ pip install -r requirements.txt
 Due to anonymization and the complexity of download and setup (JSRT & AbdomenCT-CT), we can't provide our own preprocessed datasets yet. However, in this version, we provide a script to download the OASIS dataset and convert it to a format that can be used by our training code. For this purpose, run the following command:
 
 ```bash
-python prepare_oasis.py -o .
+python prepare_OASIS.py -o .
 ```
 
 Upon the acceptance of the paper, we will provide the preprocessed datasets for the JSRT and AbdomenCT-CT datasets.
@@ -48,7 +48,7 @@ To train SINA, run the following command example for 2D OASIS dataset:
 python train_sina2D.py --dataset OASIS_imgs.pth 
 ```
 
-Note: All other flags are already set and correspond to the results in the paper. The pre-trained models are saved in the `pretrained_models` directory.
+Note: All other flags are already set and correspond to the results in the paper. We provided pre-trained models for all datasets, which are saved in the `pretrained_models` directory.
 
 To synthesize an atlas, run the following command example (works for all datasets):
 
