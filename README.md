@@ -16,14 +16,14 @@ We provide visuals for JSRT and OASIS datasets. The videos show the evolution of
     <div style="text-align: center; margin-right: 10px; flex: 1;">
       <h3>JSRT</h3>
       <video  width="100%" constrols autoplay loop muted>
-        <source src="src/JSRT.mp4" type="video/mp4">
+        <source src="src/JSRT_loop.gif" type="video/mp4">
         Your browser does not support the video tag.s
       </video>
       </div>
      <div style="text-align: center; margin-right: 10px; flex: 1;">
       <h3>OASIS</h3>
       <video  width="84%" constrols autoplay loop muted>
-        <source src="src/OASIS.mp4" type="video/mp4", caption="OASIS">
+        <source src="src/OASIS_loop.gif" type="video/mp4", caption="OASIS">
         Your browser does not support the video tag.
       </video>
     </div>
