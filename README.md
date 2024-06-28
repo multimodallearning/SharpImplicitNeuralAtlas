@@ -10,16 +10,16 @@ We propose SINA (Sharp Implicit Neural Atlases), a novel framework for medical i
 
 ## Visual Results
 
-We provide visuals for JSRT and OASIS datasets. The videos show the evolution of the atlas from the initial step of the training to the final sharp atlases.
+We provide visuals for JSRT and OASIS datasets. The videos show the evolution of the atlas from the initial step of the training to the final sharp atlases. The videos are available in the `src` directory.
 
 <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
     <div style="text-align: center; margin-right: 10px; flex: 1;">
       <h3>JSRT</h3>
-      <img src="./src/JSRT_loop.gif" width="50%">
+      <img src="./src/JSRT_loop.gif" width="90%">
       </div>
      <div style="text-align: center; margin-right: 10px; flex: 1;">
       <h3>OASIS</h3>
-      <img src="./src/OASIS_loop.gif" width="44%">
+      <img src="./src/OASIS_loop.gif" width="84%">
     </div>
 </div>
 
