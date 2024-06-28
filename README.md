@@ -1,4 +1,4 @@
-## SINA: Sharp Implicit Neural Atlases
+# SINA: Sharp Implicit Neural Atlases
 
 This repository contains the code for the paper "SINA: Sharp Implicit Neural Atlases by Joint Optimisation of Representation and Deformation" by Anonymized Authors. The paper is under review at WBIR workshop 2024 held in conjunction with MICCAI 2024 in Marrakech, Morocco.
 
@@ -14,13 +14,10 @@ This code is implemented in Python 3.10 and depends on the following packages:
 
 - torch
 - numpy
-- matplotlib
-- tqdm
-- wget
 
 please see the `requirements.txt` file for the full list of dependencies.
 
-To install the required packages, create a virtual environment and run the following command:
+To install the required packages, create a virtual environment by running the following commands:
 
 ```bash
 conda create -n sina python=3.10

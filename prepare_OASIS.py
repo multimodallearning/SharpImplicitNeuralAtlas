@@ -24,7 +24,7 @@ def main(input_path, output_path):
     imgs = []
     for fpath in fpaths:
         img = nib.load(fpath).get_fdata()
-        imgs.append(torch.tensor(img).permute(2,1,0).float())
+        imgs.append(torch.tensor(img).permute(2,1,0).squeeze().squeeze().float())
     imgs = torch.stack(imgs)
 
     # Determine output path
@@ -44,13 +44,15 @@ if __name__ == "__main__":
     # The data.tar contains many folders, we want to extract them to a folder called 'OASIS'
     with tarfile.open('data.tar') as tar:
         tar.extractall('OASIS')
-    # remove the data.tar file
-    os.remove('data.tar')
+    
     
     args = parser.parse_args()
 
     main('OASIS', args.output_path)
+    
     # force remove the OASIS folder
+    # remove the data.tar file
+    os.remove('data.tar')
     import shutil
     shutil.rmtree('OASIS')
     
