@@ -15,11 +15,11 @@ We provide visuals for JSRT and OASIS datasets. The videos show the evolution of
 <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
     <div style="text-align: center; margin-right: 10px; flex: 1;">
       <h3>JSRT</h3>
-      <img src="./src/JSRT_loop.gif" width="100%">
+      <img src="./src/JSRT_loop.gif" width="50%">
       </div>
      <div style="text-align: center; margin-right: 10px; flex: 1;">
       <h3>OASIS</h3>
-      <img src="./src/OASIS_loop.gif" width="84%">
+      <img src="./src/OASIS_loop.gif" width="44%">
     </div>
 </div>
 
