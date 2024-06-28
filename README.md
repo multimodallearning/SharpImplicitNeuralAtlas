@@ -8,6 +8,27 @@ We propose SINA (Sharp Implicit Neural Atlases), a novel framework for medical i
 
 ![image info](./src/overview.png)
 
+## Visual Results
+
+We provide visuals for JSRT and OASIS datasets. The videos show the evolution of the atlas from the initial step of the training to the final sharp atlases.
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <div style="text-align: center; margin-right: 10px; flex: 1;">
+      <h3>JSRT</h3>
+      <video  width="100%" constrols autoplay loop muted>
+        <source src="src/JSRT.mp4" type="video/mp4">
+        Your browser does not support the video tag.s
+      </video>
+      </div>
+     <div style="text-align: center; margin-right: 10px; flex: 1;">
+      <h3>OASIS</h3>
+      <video  width="84%" constrols autoplay loop muted>
+        <source src="src/OASIS.mp4" type="video/mp4", caption="OASIS">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+</div>
+
 ## Installation
 
 This code is implemented in Python 3.10 and depends on the following packages:
@@ -32,13 +53,15 @@ pip install -r requirements.txt
 
 ## Datasets
 
-Due to anonymization and the complexity of download and setup (JSRT & AbdomenCT-CT), we can't provide our own preprocessed datasets yet. However, in this version, we provide a script to download the OASIS dataset and convert it to a format that can be used by our training code. For this purpose, run the following command:
+Datasets used in this publication can be downloaded from original sources ([JSRT](http://db.jsrt.or.jp/eng.php), [OASIS](https://github.com/adalca/medical-datasets/blob/master/neurite-oasis.md), [AbdomenCTCT](https://learn2reg.grand-challenge.org/Datasets/)).
+
+For OASIS, we provide an exemplary script to download and prepare the dataset to a format that can be used by our training code. For this purpose, run the following command:
 
 ```bash
 python prepare_OASIS.py -o .
 ```
 
-Upon the acceptance of the paper, we will provide the preprocessed datasets for the JSRT and AbdomenCT-CT datasets.
+Upon the acceptance of the paper, we will provide the preprocessed datasets for the JSRT and AbdomenCTCT datasets.
 
 ## Usage
 
