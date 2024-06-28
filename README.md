@@ -15,17 +15,11 @@ We provide visuals for JSRT and OASIS datasets. The videos show the evolution of
 <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
     <div style="text-align: center; margin-right: 10px; flex: 1;">
       <h3>JSRT</h3>
-      <video  width="100%" constrols autoplay loop muted>
-        <source src="src/JSRT_loop.gif" type="video/mp4">
-        Your browser does not support the video tag.s
-      </video>
+      <img src="./src/JSRT_loop.gif" width="100%">
       </div>
      <div style="text-align: center; margin-right: 10px; flex: 1;">
       <h3>OASIS</h3>
-      <video  width="84%" constrols autoplay loop muted>
-        <source src="src/OASIS_loop.gif" type="video/mp4", caption="OASIS">
-        Your browser does not support the video tag.
-      </video>
+      <img src="./src/OASIS_loop.gif" width="84%">
     </div>
 </div>
 
