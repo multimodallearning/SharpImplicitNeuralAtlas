@@ -35,7 +35,7 @@ pip install -r requirements.txt
 Due to anonymization and the complexity of download and setup (JSRT & AbdomenCT-CT), we can't provide our own preprocessed datasets yet. However, in this version, we provide a script to download the OASIS dataset and convert it to a format that can be used by our training code. For this purpose, run the following command:
 
 ```bash
-python convert_oasis.py -o .
+python prepare_oasis.py -o .
 ```
 
 Upon the acceptance of the paper, we will provide the preprocessed datasets for the JSRT and AbdomenCT-CT datasets.

@@ -46,9 +46,11 @@ if __name__ == "__main__":
     else:
         device = torch.device('cpu')
 
-
+    # get dataset name
+    dataset_name = 'AbdomenCTCT'
+    
     #create exp name from time
-    exp_name = 'SINA_3D_'+time.strftime("%Y%m%d-%H%M")
+    exp_name = 'SINA_3D_' + dataset_name + '_' + time.strftime("%Y%m%d-%H%M")
 
     args.save_path = os.path.join(args.save_path,exp_name)
     os.makedirs(args.save_path,exist_ok=True)
@@ -115,7 +117,7 @@ if __name__ == "__main__":
                     out = model((mesh+disp_spline).view(args.batch_size,-1,3)[:, rand_voxels].view(-1,3)).float()
                 else:
                     out = model((mesh+disp_spline).view(-1,3)).float()
-
+            # For 3D, we use MSE loss
             loss = F.mse_loss(out,imgs_train.view(-1,1))
             loss.backward()
             losses.append(loss.item())

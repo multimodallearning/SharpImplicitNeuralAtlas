@@ -16,6 +16,7 @@ if __name__ == "__main__":
     parser.add_argument('--dataset', type=str, help='Path to Image Data as .pth file in [NxHxW]', required=True)
     parser.add_argument('--gpu', type=int, default=0, help='GPU device to use')
     parser.add_argument('--epochs', type=int, default=2000, help='Number of epochs to train')
+    parser.add_argument('--batch_size', type=int, default=1, help='Batch size')
     parser.add_argument('--channels', type=int, default=64, help='Number of channels')
     parser.add_argument('--layers', type=int, default=7, help='Number of layers')
     parser.add_argument('--grid_sz', type=int, default=28, help='Grid size')
@@ -47,8 +48,10 @@ if __name__ == "__main__":
         device = torch.device('cpu')
 
 
+    # get Dataset name from path dataset_name_imgs.pth
+    dataset_name = os.path.basename(args.dataset).split('_imgs')[0]
 
-    exp_name = 'SINA_2D_'+time.strftime("%Y%m%d-%H%M")
+    exp_name = 'SINA_2D_' + dataset_name + '_' + time.strftime("%Y%m%d-%H%M")
 
     args.save_path = os.path.join(args.save_path,exp_name)
     os.makedirs(args.save_path,exist_ok=True)
@@ -91,7 +94,7 @@ if __name__ == "__main__":
     disp_scheduler = torch.optim.lr_scheduler.LambdaLR(disp_optimizer, lr_lambda=disp_scheduler_lambda)
 
     
-    mesh = F.affine_grid(torch.eye(2,3).unsqueeze(0).cuda(),(1,1,H,W)).repeat(args.batch_size,1,1,1)
+    mesh = F.affine_grid(torch.eye(2,3).unsqueeze(0).to(device),(1,1,H,W), align_corners=False).repeat(args.batch_size,1,1,1)
 
 
     losses = []
@@ -106,13 +109,14 @@ if __name__ == "__main__":
             disp_optimizer.zero_grad()
             optimizer.zero_grad()
 
-            imgs_train = imgs[minibatches[j]].cuda().float().unsqueeze(1)
+            imgs_train = imgs[minibatches[j]].to(device).float().unsqueeze(1)
 
             disp_spline = F.interpolate(F.avg_pool2d(F.avg_pool2d(disp[minibatches[j]],5,stride=1,padding=2),5,stride=1,padding=2),\
                                     size=(H,W),mode='bilinear').permute(0,2,3,1)
             
             out = model((mesh+disp_spline).view(-1,2)).view(-1)
-            loss =  1 - ssim(out.view(-1,H,W),imgs_train.view(-1,H,W))
+            # For 2D images, we use SSIM loss
+            loss =  1 - ssim(out.view(-1,1,H,W),imgs_train.view(-1,1,H,W))
             loss.backward()
             losses.append(loss.item())
 
