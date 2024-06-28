@@ -13,10 +13,10 @@ We propose SINA (Sharp Implicit Neural Atlases), a novel framework for medical i
 This code is implemented in Python 3.10 and depends on the following packages:
 
 - torch
-- Numpy
-- scipy
+- numpy
 - matplotlib
 - tqdm
+- wget
 
 please see the `requirements.txt` file for the full list of dependencies.
 
@@ -24,37 +24,58 @@ To install the required packages, create a virtual environment and run the follo
 
 ```bash
 conda create -n sina python=3.10
+conda activate sina
 ```
 
-Then, install the required packages using the following command
+Then, install the required packages using the following command:
 
 ```bash
 pip install -r requirements.txt
 ```
 
+## Datasets
+
+Due to anonymization and the complexity of download and setup (JSRT & AbdomenCT-CT), we can't provide our own preprocessed datasets yet. However, in this version, we provide a script to download the OASIS dataset and convert it to a format that can be used by our training code. For this purpose, run the following command:
+
+```bash
+python convert_oasis.py -o .
+```
+
+Upon the acceptance of the paper, we will provide the preprocessed datasets for the JSRT and AbdomenCT-CT datasets.
+
 ## Usage
 
-To train the model, run the following command:
+To train SINA, run the following command example for 2D OASIS dataset:
 
 ```bash
-python train_sina2D.py
+python train_sina2D.py --dataset OASIS_imgs.pth 
 ```
 
-To synthesize an atlas, run the following command:
+Note: All other flags are already set and correspond to the results in the paper. The pre-trained models are saved in the `pretrained_models` directory.
+
+To synthesize an atlas, run the following command example (works for all datasets):
 
 ```bash
-python synthesize.py
+python synthesize.py --trained_model pretrained_models/OASIS.pth  
 ```
+
+Note that the pertained 3D model is an LFS file and can be downloaded as follows:
+  
+  ```bash
+  git lfs install
+  git lfs fetch --all
+  git lfs pull
+  ```
 
 ## Citation
 
 If you find this work useful, please consider citing our paper:
 
 ```
-@article{anonymized,
+@inproceedings{anonymized_author,
   title={SINA: Sharp Implicit Neural Atlases by Joint Optimisation of Representation and Deformation},
   author={Anonymized Authors},
-  journal={Anonymized Journal},
+  booktitle={Workshop on Biomedical Image Registration, WBIR, held in conjunction with MICCAI},
   year={2024}
 }
 ```

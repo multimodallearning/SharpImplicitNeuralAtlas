@@ -1,5 +1,6 @@
 matplotlib==3.8.2
 nibabel==5.2.1
-numpy==2.0.0
+numpy<=2.0.0
 torch==2.2.0
 tqdm==4.66.1
+wget==3.2

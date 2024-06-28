@@ -10,3 +10,12 @@ venv/
 
 # macos
 .DS_Store
+
+# files
+*.pth
+*.pt
+*.nii
+*.nii.gz
+
+# results
+results/

@@ -1,21 +1,30 @@
-import os
 import argparse
-import torch
+import os
+import tarfile
+
 import nibabel as nib
+import torch
+import wget
+
+
+def wget_data(url, path):
+    if not os.path.exists(path):
+        wget.download(url, path)
+    return path
 
 def main(input_path, output_path):
     # Search subfolders for files ending with 'slice_norm.nii.gt'
     fpaths = []
     for root, dirs, files in os.walk(input_path):
         for file in files:
-            if file.endswith('slice_norm.nii.gt'):
+            if file.endswith('slice_norm.nii.gz'):
                 fpaths.append(os.path.join(root, file))
     fpaths = sorted(fpaths)
 
     imgs = []
     for fpath in fpaths:
         img = nib.load(fpath).get_fdata()
-        imgs.append(torch.tensor(img).T.float())
+        imgs.append(torch.tensor(img).permute(2,1,0).float())
     imgs = torch.stack(imgs)
 
     # Determine output path
@@ -29,9 +38,19 @@ def main(input_path, output_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process files ending with 'slice_norm.nii.gt' in a directory.")
-    parser.add_argument("input_path", type=str, help="Input directory path")
     parser.add_argument("-o", "--output_path", type=str, help="Output directory path (default: input_path)")
 
+    wget_data('http://surfer.nmr.mgh.harvard.edu/ftp/data/neurite/data/neurite-oasis.2d.v1.0.tar', 'data.tar')
+    # The data.tar contains many folders, we want to extract them to a folder called 'OASIS'
+    with tarfile.open('data.tar') as tar:
+        tar.extractall('OASIS')
+    # remove the data.tar file
+    os.remove('data.tar')
+    
     args = parser.parse_args()
 
-    main(args.input_path, args.output_path)
+    main('OASIS', args.output_path)
+    # force remove the OASIS folder
+    import shutil
+    shutil.rmtree('OASIS')
+    
