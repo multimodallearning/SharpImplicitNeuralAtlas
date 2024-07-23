@@ -1,10 +1,10 @@
 # SINA: Sharp Implicit Neural Atlases
 
-This repository contains the code for the paper "SINA: Sharp Implicit Neural Atlases by Joint Optimisation of Representation and Deformation" by Anonymized Authors. The paper is under review at WBIR workshop 2024 held in conjunction with MICCAI 2024 in Marrakech, Morocco.
+This repository contains the code for the paper "SINA: Sharp Implicit Neural Atlases by Joint Optimisation of Representation and Deformation" by Christoph Großbröhmer, Ziad Al-Haj Hemidi, Fenja Falta and Mattias P. Heinrich. The paper has been accepted to the WBIR workshop 2024 held in conjunction with MICCAI 2024 in Marrakech, Morocco.
 
 ## Overview
 
-We propose SINA (Sharp Implicit Neural Atlases), a novel framework for medical image atlas synthesis, leveraging the joint optimisation of data representation and registration. By iteratively refining sample-to-atlas registrations and modeling the atlas as a continuous function in an Implicit Neural Representation (INR), we demonstrate the possibility of achieving atlas sharpness while maintaining data fidelity.
+We propose SINA (Sharp Implicit Neural Atlases), a novel framework for medical image atlas synthesis, leveraging the joint optimisation of data representation and registration. By iteratively refining sample-to-atlas registrations and modelling the atlas as a continuous function in an Implicit Neural Representation (INR), we demonstrate the possibility of achieving atlas sharpness while maintaining data fidelity.
 
 ![image info](./src/overview.png)
 
