@@ -73,10 +73,10 @@ Note that the pertained 3D model is an LFS file and can be downloaded as follows
 If you find this work useful, please consider citing our paper:
 
 ```
-@inproceedings{anonymized_author,
-  title={SINA: Sharp Implicit Neural Atlases by Joint Optimisation of Representation and Deformation},
-  author={Anonymized Authors},
-  booktitle={Workshop on Biomedical Image Registration, WBIR, held in conjunction with MICCAI},
-  year={2024}
+@InProceedings{10.1007/978-3-031-73480-9_13,
+author="Gro{\ss}br{\"o}hmer, Christoph and Hemidi, Ziad Al-Haj and Falta, Fenja and Heinrich, Mattias P.",
+title="SINA: Sharp Implicit Neural Atlases by Joint Optimisation of Representation and Deformation",
+booktitle="Biomedical Image Registration",
+year="2024",
 }
 ```
