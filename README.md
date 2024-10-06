@@ -1,6 +1,6 @@
 # SINA: Sharp Implicit Neural Atlases
 
-This repository contains the code for the paper "SINA: Sharp Implicit Neural Atlases by Joint Optimisation of Representation and Deformation" by Christoph Großbröhmer, Ziad Al-Haj Hemidi, Fenja Falta and Mattias P. Heinrich. The paper has been accepted to the WBIR workshop 2024 held in conjunction with MICCAI 2024 in Marrakech, Morocco.
+This repository contains the code for the paper ![https://link.springer.com/chapter/10.1007/978-3-031-73480-9_13]("SINA: Sharp Implicit Neural Atlases by Joint Optimisation of Representation and Deformation") by Christoph Großbröhmer, Ziad Al-Haj Hemidi, Fenja Falta and Mattias P. Heinrich. The paper has been accepted to the WBIR workshop 2024 held in conjunction with MICCAI 2024 in Marrakech, Morocco.
 
 ## Overview
 
